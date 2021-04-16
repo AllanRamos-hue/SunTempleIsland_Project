@@ -41,6 +41,7 @@ public class SelectionController : MonoBehaviour
             {
                 for (int i = 0; i < _selection.childCount; i++)
                 {
+                    if(_selection.GetChild(i).GetComponent<MeshRenderer>() != null)
                     _selection.GetChild(i).GetComponent<MeshRenderer>().material = defaultMaterial;
                 }
                 

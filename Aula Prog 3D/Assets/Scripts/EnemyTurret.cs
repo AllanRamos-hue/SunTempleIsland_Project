@@ -6,26 +6,52 @@ public class EnemyTurret : MonoBehaviour
 {
     public GameObject projectilePrefab;
 
-    public float range;
+    public float range = 10;
+    public float fireRate = 0.2f;
 
     Transform muzzle;
     Transform target;
 
-    // Start is called before the first frame update
+    float cooldown;
+
     void Start()
     {
-        muzzle = transform.Find("Muzzle");
+        muzzle = transform.GetChild(0);
 
         target = FindObjectOfType<PlayerVision>().transform;
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(target.position, transform.position) < range)
+        DetectPlayer(range);
+    }
+
+    void DetectPlayer(float _range)
+    {
+        if (Vector3.Distance(target.position, transform.position) < _range)
         {
-            transform.LookAt(target);
+            Ray ray = new Ray(muzzle.position, target.position - muzzle.position);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, _range))
+            {
+                if (hit.transform == target)
+                {
+                    transform.LookAt(target);
+
+                    Shoot(fireRate);
+                }
+
+            }
+        }
+    }
+
+    void Shoot(float _fireRate)
+    {
+        if (cooldown < Time.time)
+        {
+            cooldown = Time.time + _fireRate;
 
             Vector3 position = muzzle.position;
 
@@ -36,12 +62,6 @@ public class EnemyTurret : MonoBehaviour
             prefab.GetComponent<Rigidbody>().AddForce(muzzle.forward * 500);
 
             Destroy(prefab, 3);
-        }
-    }
-
-
-    void Shoot()
-    {
-
+        }    
     }
 }
