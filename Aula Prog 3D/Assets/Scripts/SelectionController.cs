@@ -13,9 +13,13 @@ public class SelectionController : MonoBehaviour
 
     public Color selectionColor;
 
+    PlayerLife life;
+
     private void Start()
     {
         defaultMaterial = GetComponent<MeshRenderer>().material;
+
+        life = GetComponent<PlayerLife>();
     }
 
     void Update()
@@ -91,5 +95,18 @@ public class SelectionController : MonoBehaviour
                 pickUpController.PickUp();
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if(other.CompareTag("Shootable"))
+        {
+            life.ReceiveDamage(-20);
+
+            Destroy(other);
+
+            Debug.Log("hit");
+        }
+
     }
 }

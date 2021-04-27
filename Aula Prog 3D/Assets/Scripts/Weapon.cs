@@ -45,6 +45,16 @@ public class Weapon : MonoBehaviour
             Destroy(bulletPrefab, 3);
         }
 
-        Instantiate(muzzleParticle, muzzle.position, Quaternion.identity);
+        SpawnParticle(muzzle.position, muzzleParticle, 2);
+      
+    }
+
+    void SpawnParticle(Vector3 origin, GameObject prefab, float timeToDestroy)
+    {   
+        GameObject _prefab = Instantiate(prefab, origin, Quaternion.identity);
+
+        _prefab.SetActive(true);
+
+        Destroy(_prefab, timeToDestroy);
     }
 }
