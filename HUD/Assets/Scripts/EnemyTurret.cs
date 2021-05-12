@@ -53,7 +53,7 @@ public class EnemyTurret : MonoBehaviour
         {
             cooldown = Time.time + _fireRate;
 
-            Vector3 position = muzzle.position;
+            Vector3 position = muzzle.localPosition;
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.up, muzzle.forward);
 
