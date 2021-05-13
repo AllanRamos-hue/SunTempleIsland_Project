@@ -9,14 +9,16 @@ public class EnemyTurret : MonoBehaviour
     public float range = 10;
     public float fireRate = 0.2f;
 
-    Transform muzzle;
+    Transform turretBody;
     Transform target;
+
+    public Transform muzzle;
 
     float cooldown;
 
     void Start()
     {
-        muzzle = transform.GetChild(0);
+        turretBody = transform.GetChild(0);
 
         target = FindObjectOfType<PlayerVision>().transform;
 
@@ -30,7 +32,7 @@ public class EnemyTurret : MonoBehaviour
     {
         if (Vector3.Distance(target.position, transform.position) < _range)
         {
-            Ray ray = new Ray(muzzle.position, target.position - muzzle.position);
+            Ray ray = new Ray(turretBody.position, target.position - turretBody.position);
 
             RaycastHit hit;
 
@@ -53,9 +55,9 @@ public class EnemyTurret : MonoBehaviour
         {
             cooldown = Time.time + _fireRate;
 
-            Vector3 position = muzzle.localPosition;
+            Vector3 position = muzzle.position;
 
-            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, muzzle.forward);
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, muzzle.forward);
 
             GameObject prefab = Instantiate(projectilePrefab, position, rotation);
 

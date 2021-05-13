@@ -2,57 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SelectionController : MonoBehaviour
 {
 
     Ray ray;
-    
+
     Transform _selection;
 
-    Material defaultMaterial;
-
-    public Color selectionColor;
+    public GameObject text;
 
     PlayerLife life;
 
     private void Start()
     {
-        defaultMaterial = GetComponent<MeshRenderer>().material;
-
         life = GetComponent<PlayerLife>();
+
+        text.SetActive(false);
     }
 
     void Update()
     {
         SelectObject();
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             PickUpSelection();
         }
-       
+
     }
 
     void SelectObject()
     {
         if (_selection != null)
         {
-            var _selectionRenderer = _selection.GetComponent<MeshRenderer>();
-            _selectionRenderer.material = defaultMaterial;
-          
-
-            if(_selection.childCount > 0)
-            {
-                for (int i = 0; i < _selection.childCount; i++)
-                {
-                    if(_selection.GetChild(i).GetComponent<MeshRenderer>() != null)
-                    _selection.GetChild(i).GetComponent<MeshRenderer>().material = defaultMaterial;
-                }
-                
-            }
-
-            _selection = null;
+            text.SetActive(false);
         }
+
+        _selection = null;
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -64,24 +51,14 @@ public class SelectionController : MonoBehaviour
 
             if (selection.CompareTag("Selectable"))
             {
-                var selectionRenderer = selection.GetComponent<MeshRenderer>();
-
-                if (selectionRenderer != null)
-                {
-                    selectionRenderer.material.color = selectionColor;
-
-                    if (selection.childCount > 0)
-                    {
-                        for (int i = 0; i < selection.childCount; i++)
-                        {
-                            selection.GetChild(i).GetComponent<MeshRenderer>().material.color = selectionColor;
-                        }
-                    }
-                }
+                text.SetActive(true);
+            }
+            else
+            {
+                text.SetActive(false);
             }
 
             _selection = selection;
-
         }
     }
 
@@ -97,16 +74,16 @@ public class SelectionController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-       if(other.CompareTag("Shootable"))
+        if (other.CompareTag("Shootable"))
         {
             life.ReceiveDamage(-20);
 
             Destroy(other);
-
-            Debug.Log("hit");
         }
-
     }
 }
+
+    
+
