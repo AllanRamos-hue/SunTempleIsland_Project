@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SelectionController : MonoBehaviour
 {
-
     Ray ray;
 
     Transform _selection;
