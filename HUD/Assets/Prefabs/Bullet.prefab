@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6526805097009064555}
   - component: {fileID: 6526805097006871701}
   - component: {fileID: 6526805097006871722}
+  - component: {fileID: 2058980586359915347}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Shootable
@@ -114,6 +115,20 @@ CapsuleCollider:
   m_Height: 0.07
   m_Direction: 2
   m_Center: {x: 0.000000014202669, y: -0.0000000088475645, z: 0.0000000037252903}
+--- !u!114 &2058980586359915347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526805097006871723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6946b431b75b3d24ab66a819638c7fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunName: M2
+  damage: -15
 --- !u!1 &8008918380550690941
 GameObject:
   m_ObjectHideFlags: 0

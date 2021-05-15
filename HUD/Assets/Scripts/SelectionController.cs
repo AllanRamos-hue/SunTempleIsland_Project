@@ -26,7 +26,8 @@ public class SelectionController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            PickUpSelection();
+            PickUpGun();
+            PickUpMedKit();
         }
 
     }
@@ -61,26 +62,30 @@ public class SelectionController : MonoBehaviour
         }
     }
 
-    void PickUpSelection()
+    void PickUpGun()
     {
         if (_selection != null)
         {
-            PickUpController pickUpController = _selection.GetComponent<PickUpController>();
-            if (pickUpController)
+            PickUpGun pickUpGun = _selection.GetComponent<PickUpGun>();
+            if (pickUpGun)
             {
-                pickUpController.PickUp();
+                pickUpGun.PickUp();
             }
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void PickUpMedKit()
     {
-        if (other.CompareTag("Shootable"))
+        if (_selection != null)
         {
-            life.ReceiveDamage(-20);
+            PickUpMedKit pickUpMed = _selection.GetComponent<PickUpMedKit>();
 
-            Destroy(other);
+            if (pickUpMed)
+            {
+                pickUpMed.Heal();
+            }
         }
+        Debug.Log("Curou");
     }
 }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public float life;
+    [Range(0,100)] public float life;
 
     public float currentLife;
 
@@ -36,7 +36,5 @@ public class PlayerLife : MonoBehaviour
         currentLife += damage;
 
         currentLife = Mathf.Clamp(currentLife, 0, life);
-
-        Debug.Log(damage);
     }
 }
