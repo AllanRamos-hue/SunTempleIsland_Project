@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
 {
     Vector3 center;
 
+    [SerializeField] bool isAutomatic;
+
     int currentAmmo;
     [SerializeField] int magAmmo = 10;
     public int totalAmmo = 30;
@@ -14,6 +16,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Text ammoText;
     
     [SerializeField] float bulletRange;
+    [SerializeField] float fireRate = 1;
 
     [SerializeField] GameObject bulletMark;
     [SerializeField] GameObject muzzleParticle;
@@ -21,6 +24,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] Transform muzzle;
 
     [SerializeField] LayerMask bulletLayer;
+
+    float cooldown = 0;
 
     void Start()
     {
@@ -31,11 +36,30 @@ public class Weapon : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(!isAutomatic)
         {
-            if (currentAmmo > 0) 
-                Shoot();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (currentAmmo > 0)
+                    Shoot();
+            }
         }
+        else
+        {
+            if (Input.GetButton("Fire1") && Time.time >= cooldown)
+            {
+                if (currentAmmo > 0)
+                {
+                    Shoot();
+                    cooldown = Time.time + 1f / fireRate;
+                }
+                    
+            }
+        }
+        
+            
+             
+        
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -58,18 +82,27 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, bulletRange, bulletLayer))
         {
-            Quaternion markSurface = Quaternion.LookRotation(-hit.normal);
+            if (isAutomatic)
+            {
+                if (cooldown < Time.time)
+                {
+                    cooldown = Time.time + 1f;
+                }
+            }
 
-            Vector3 markOffset = hit.point + hit.normal / 100;
+                Quaternion markSurface = Quaternion.LookRotation(-hit.normal);
 
-            GameObject bulletPrefab = Instantiate(bulletMark, markOffset, markSurface);
-            Destroy(bulletPrefab, 3);
+                Vector3 markOffset = hit.point + hit.normal / 100;
+
+                GameObject bulletPrefab = Instantiate(bulletMark, markOffset, markSurface);
+                Destroy(bulletPrefab, 3);
+           
+
+                if (muzzleParticle)
+                SpawnParticle(muzzle.position, muzzleParticle, 2);
+
+                --currentAmmo;
         }
-
-        if(muzzleParticle)
-            SpawnParticle(muzzle.position, muzzleParticle, 2);
-
-        --currentAmmo;
 
     }
 
