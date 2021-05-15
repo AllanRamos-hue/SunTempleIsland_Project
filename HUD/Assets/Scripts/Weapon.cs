@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
     Vector3 center;
 
     int currentAmmo;
-    [SerializeField][Range(0,10)] int magAmmo = 10;
+    [SerializeField] int magAmmo = 10;
     public int totalAmmo = 30;
+
+    [SerializeField] Text ammoText;
     
     [SerializeField] float bulletRange;
 
@@ -32,10 +35,6 @@ public class Weapon : MonoBehaviour
         {
             if (currentAmmo > 0) 
                 Shoot();
-            else
-            {
-                Debug.Log("NO AMMO");
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -43,14 +42,17 @@ public class Weapon : MonoBehaviour
             ReloadAmmo();
         }
 
+        ammoText.text = currentAmmo.ToString() + "/" + totalAmmo.ToString();
+
+    }
+
+    private void OnEnable()
+    {
+        ammoText.gameObject.SetActive(true);
     }
 
     void Shoot()
     {
-        --currentAmmo;
-
-        Debug.Log("MA: " + currentAmmo);
-
         Ray ray = Camera.main.ScreenPointToRay(center);
         RaycastHit hit;
 
@@ -66,7 +68,9 @@ public class Weapon : MonoBehaviour
 
         if(muzzleParticle)
             SpawnParticle(muzzle.position, muzzleParticle, 2);
-      
+
+        --currentAmmo;
+
     }
 
     void SpawnParticle(Vector3 origin, GameObject prefab, float timeToDestroy)
@@ -80,10 +84,15 @@ public class Weapon : MonoBehaviour
 
     void ReloadAmmo()
     {
-        if(currentAmmo < magAmmo)
+        if(currentAmmo < magAmmo && totalAmmo > 0)
         {
-            currentAmmo = magAmmo;
-            Debug.Log("MA: " + currentAmmo);
+            totalAmmo -= magAmmo - currentAmmo;
+            
+            currentAmmo = magAmmo; 
+        }
+        else
+        {
+            Debug.Log("NO AMMO");
         }
     }
 }

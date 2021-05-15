@@ -783,7 +783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471626208}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.414, y: -0.11700004, z: 0.367}
+  m_LocalPosition: {x: 0.32, y: -0.11700004, z: 0.377}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1499909415}
@@ -855,8 +855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d7c3dbb737b04a9a26b01b12a331e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magAmmo: 10
-  totalAmmo: 30
+  magAmmo: 8
+  totalAmmo: 32
+  ammoText: {fileID: 1578490283}
   bulletRange: 15
   bulletMark: {fileID: 9009296349054336261, guid: d3fa1ed22b37ce247b229eeb669eea1d, type: 3}
   muzzleParticle: {fileID: 0}
@@ -1727,6 +1728,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499909414}
   m_Mesh: {fileID: 4300002, guid: b812e42521a5a27499e76cc5ed56e3ac, type: 3}
+--- !u!1 &1578490281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578490282}
+  - component: {fileID: 1578490284}
+  - component: {fileID: 1578490283}
+  m_Layer: 5
+  m_Name: Ammo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1578490282
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578490281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946607609}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -96.75, y: 37.78}
+  m_SizeDelta: {x: 193.5, y: 75.0567}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1578490283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578490281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8396226, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 6403443803d29c048a9b14822a1b3611, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '10/30
+
+'
+--- !u!222 &1578490284
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578490281}
+  m_CullTransparentMesh: 1
 --- !u!1 &1747724126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,7 +1827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1747724127
 Transform:
   m_ObjectHideFlags: 0
@@ -1754,7 +1836,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747724126}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.448, y: -0.11700004, z: 0.377}
+  m_LocalPosition: {x: 0.331, y: -0.11700004, z: 0.366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1890316781}
@@ -1825,8 +1907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d7c3dbb737b04a9a26b01b12a331e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magAmmo: 10
-  totalAmmo: 30
+  magAmmo: 30
+  totalAmmo: 90
+  ammoText: {fileID: 1578490283}
   bulletRange: 30
   bulletMark: {fileID: 9009296349054336261, guid: d3fa1ed22b37ce247b229eeb669eea1d, type: 3}
   muzzleParticle: {fileID: 0}
@@ -2091,6 +2174,7 @@ RectTransform:
   - {fileID: 1470807484}
   - {fileID: 2101914671}
   - {fileID: 644678931}
+  - {fileID: 1578490282}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
