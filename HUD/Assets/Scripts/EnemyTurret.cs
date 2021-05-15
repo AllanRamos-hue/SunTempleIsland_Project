@@ -8,7 +8,7 @@ public class EnemyTurret : MonoBehaviour
 
     public float range = 10;
     public float fireRate = 0.2f;
-    public float timeToReload = 3;
+    public float timeToReload = 5;
 
     Transform turretBody;
     Transform target;
@@ -43,7 +43,7 @@ public class EnemyTurret : MonoBehaviour
                 {
                     transform.LookAt(target);
 
-                    StartCoroutine(ShootingTime());
+                    Shoot(fireRate);
                 }
 
             }
@@ -68,22 +68,19 @@ public class EnemyTurret : MonoBehaviour
         }    
     }
 
-    IEnumerator ShootingTime()
-    {
-        Shoot(fireRate);
+    //IEnumerator ShootingTime()
+    //{
+    //    Shoot(fireRate);
+        
+    //    yield return new WaitForSeconds(8);
 
-        Debug.Log("Shoot");
+    //    StartCoroutine(ReloadTime(timeToReload));
+    //}
 
-        yield return new WaitForSeconds(8);
+    //IEnumerator ReloadTime(float _time)
+    //{
+    //    yield return new WaitForSeconds(_time);
 
-        StartCoroutine(ReloadTime(timeToReload));
-    }
-
-    IEnumerator ReloadTime(float _time)
-    {
-        StopCoroutine(ShootingTime());
-
-        yield return new WaitForSeconds(_time);
-
-    }
+    //    Shoot(fireRate);
+    //}
 }

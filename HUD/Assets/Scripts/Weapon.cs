@@ -5,6 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     Vector3 center;
+
+    int currentAmmo;
+    [SerializeField][Range(0,10)] int magAmmo = 10;
+    public int totalAmmo = 30;
+    
     [SerializeField] float bulletRange;
 
     [SerializeField] GameObject bulletMark;
@@ -18,20 +23,34 @@ public class Weapon : MonoBehaviour
     {
         center = new Vector3(Screen.width / 2, Screen.height / 2);
 
+        currentAmmo = magAmmo;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if (currentAmmo > 0) 
+                Shoot();
+            else
+            {
+                Debug.Log("NO AMMO");
+            }
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadAmmo();
+        }
+
     }
 
     void Shoot()
     {
+        --currentAmmo;
+
+        Debug.Log("MA: " + currentAmmo);
+
         Ray ray = Camera.main.ScreenPointToRay(center);
         RaycastHit hit;
 
@@ -45,7 +64,8 @@ public class Weapon : MonoBehaviour
             Destroy(bulletPrefab, 3);
         }
 
-        SpawnParticle(muzzle.position, muzzleParticle, 2);
+        if(muzzleParticle)
+            SpawnParticle(muzzle.position, muzzleParticle, 2);
       
     }
 
@@ -56,5 +76,14 @@ public class Weapon : MonoBehaviour
         _prefab.SetActive(true);
 
         Destroy(_prefab, timeToDestroy);
+    }
+
+    void ReloadAmmo()
+    {
+        if(currentAmmo < magAmmo)
+        {
+            currentAmmo = magAmmo;
+            Debug.Log("MA: " + currentAmmo);
+        }
     }
 }
