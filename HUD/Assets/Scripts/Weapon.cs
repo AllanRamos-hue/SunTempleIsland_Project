@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     Vector3 center;
+    int currentAmmo;
+    bool isReloading;
+
+    Animator gunAnim;
 
     [SerializeField] bool isAutomatic;
-
-    int currentAmmo;
+ 
     [SerializeField] int magAmmo = 10;
     public int totalAmmo = 30;
 
@@ -19,7 +22,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float fireRate = 1;
 
     [SerializeField] GameObject bulletMark;
-    [SerializeField] GameObject muzzleParticle;
+    [SerializeField] ParticleSystem muzzleParticle;
     
     [SerializeField] Transform muzzle;
 
@@ -32,11 +35,18 @@ public class Weapon : MonoBehaviour
         center = new Vector3(Screen.width / 2, Screen.height / 2);
 
         currentAmmo = magAmmo;
+
+        gunAnim = GetComponent<Animator>();
     }
     
     void Update()
     {
-        if(!isAutomatic)
+        if (isReloading)
+            return;
+
+        ammoText.text = currentAmmo.ToString() + "/" + totalAmmo.ToString();
+
+        if (!isAutomatic)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -57,17 +67,14 @@ public class Weapon : MonoBehaviour
             }
         }
         
-            
-             
-        
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || currentAmmo <= 0)
         {
-            ReloadAmmo();
-        }
-
-        ammoText.text = currentAmmo.ToString() + "/" + totalAmmo.ToString();
-
+            if (currentAmmo < magAmmo && totalAmmo > 0)
+            {
+                StartCoroutine(ReloadAmmo());
+                return;
+            }        
+        }       
     }
 
     private void OnEnable()
@@ -90,42 +97,36 @@ public class Weapon : MonoBehaviour
                 }
             }
 
-                Quaternion markSurface = Quaternion.LookRotation(-hit.normal);
+            --currentAmmo;
 
-                Vector3 markOffset = hit.point + hit.normal / 100;
+            Quaternion markSurface = Quaternion.LookRotation(-hit.normal);
 
-                GameObject bulletPrefab = Instantiate(bulletMark, markOffset, markSurface);
-                Destroy(bulletPrefab, 3);
-           
+            Vector3 markOffset = hit.point + hit.normal / 100;
 
-                if (muzzleParticle)
-                SpawnParticle(muzzle.position, muzzleParticle, 2);
+            GameObject bulletPrefab = Instantiate(bulletMark, markOffset, markSurface);
+            Destroy(bulletPrefab, 3);
 
-                --currentAmmo;
+            if (muzzleParticle)
+                muzzleParticle.Play();             
         }
 
     }
-
-    void SpawnParticle(Vector3 origin, GameObject prefab, float timeToDestroy)
-    {   
-        GameObject _prefab = Instantiate(prefab, origin, Quaternion.identity);
-
-        _prefab.SetActive(true);
-
-        Destroy(_prefab, timeToDestroy);
-    }
-
-    void ReloadAmmo()
+    IEnumerator ReloadAmmo()
     {
-        if(currentAmmo < magAmmo && totalAmmo > 0)
-        {
-            totalAmmo -= magAmmo - currentAmmo;
+        float reloadTime = gunAnim.runtimeAnimatorController.animationClips.Length;
+        
+        isReloading = true;
+
+        gunAnim.SetBool("Reloading", true);
+        
+        yield return new WaitForSeconds(reloadTime);
+        
+        totalAmmo -= magAmmo - currentAmmo;
             
-            currentAmmo = magAmmo; 
-        }
-        else
-        {
-            Debug.Log("NO AMMO");
-        }
+        currentAmmo = magAmmo; 
+        
+        isReloading = false;
+
+        gunAnim.SetBool("Reloading", false);
     }
 }
