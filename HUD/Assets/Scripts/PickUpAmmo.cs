@@ -6,15 +6,15 @@ public class PickUpAmmo : PickUpItemController
 {
     public int earnedAmmo;
 
-    public Weapon[] weapons;
+    public Weapon weapon;
 
     public override void PickUp()
     {
-        base.PickUp();
-
-        for (int i = 0; i < weapons.Length; i++)
+        if(weapon.gameObject.activeSelf)
         {
-            weapons[i].ReceiveAmmo(earnedAmmo);
+            base.PickUp();
+            weapon.ReceiveAmmo(earnedAmmo);
         }
+       
     }
 }
