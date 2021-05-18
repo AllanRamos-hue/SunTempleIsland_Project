@@ -8,7 +8,7 @@ public class Mine : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float damage = -110;
 
-    public UnityEvent onHitMine;
+    public ParticleSystem explosinFX;
 
     PlayerLife player;
 
@@ -24,7 +24,9 @@ public class Mine : MonoBehaviour
         {
             player.ReceiveDamage(damage);
 
-            onHitMine.Invoke();
+            if(explosinFX)
+                explosinFX.Play();
+
         }        
     }
 

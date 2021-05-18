@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpMedKit : MonoBehaviour
+public class PickUpMedKit : PickUpItemController
 {
     public float lifeEarned;
 
@@ -13,10 +13,10 @@ public class PickUpMedKit : MonoBehaviour
         player = FindObjectOfType<PlayerLife>();
     }
 
-    public void Heal()
+    public override void PickUp()
     {
+        base.PickUp();
+    
         player.ReceiveDamage(lifeEarned);
-
-        gameObject.SetActive(false);
     }
 }

@@ -114,6 +114,13 @@ public class Weapon : MonoBehaviour
         }
 
     }
+
+    public void ReceiveAmmo(int ammo)
+    {
+        if(totalAmmo < 200)
+            totalAmmo += ammo;
+    }
+
     IEnumerator ReloadAmmo()
     {
         float reloadTime = gunAnim.runtimeAnimatorController.animationClips.Length;

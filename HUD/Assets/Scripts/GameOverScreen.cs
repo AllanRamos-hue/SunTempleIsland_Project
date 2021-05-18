@@ -16,13 +16,11 @@ public class GameOverScreen : MonoBehaviour
 
     void Update()
     {
-        if (player.Die()) 
+        if (player.Die() == true) 
         {
             gameOver.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
-
-            return;
         }
     }
 

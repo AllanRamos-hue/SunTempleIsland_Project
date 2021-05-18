@@ -28,6 +28,7 @@ public class SelectionController : MonoBehaviour
         {
             PickUpGun();
             PickUpMedKit();
+            PickUpAmmo();
         }
 
     }
@@ -82,12 +83,21 @@ public class SelectionController : MonoBehaviour
 
             if (pickUpMed)
             {
-                pickUpMed.Heal();
+                pickUpMed.PickUp();
             }
         }
-        Debug.Log("Curou");
+    }
+
+    void PickUpAmmo()
+    {
+        if (_selection != null)
+        {
+            PickUpAmmo pickUpAmmo = _selection.GetComponent<PickUpAmmo>();
+
+            if (pickUpAmmo)
+            {
+                pickUpAmmo.PickUp();
+            }
+        }
     }
 }
-
-    
-

@@ -24,7 +24,6 @@ public class EnemyPatrol : MonoBehaviour
         target = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(SpotPlayer())
