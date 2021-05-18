@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isAutomatic;
  
     [SerializeField] int magAmmo = 10;
-    public int totalAmmo = 30;
+    [Range(0, 200)] int totalAmmo = 30;
 
     [SerializeField] Text ammoText;
     
@@ -37,14 +37,17 @@ public class Weapon : MonoBehaviour
         currentAmmo = magAmmo;
 
         gunAnim = GetComponent<Animator>();
+
+        totalAmmo = magAmmo * 4;
     }
     
     void Update()
     {
-        if (isReloading)
-            return;
 
         ammoText.text = currentAmmo.ToString() + "/" + totalAmmo.ToString();
+        
+        if (isReloading)
+            return;
 
         if (!isAutomatic)
         {

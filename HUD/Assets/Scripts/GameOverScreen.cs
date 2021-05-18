@@ -11,15 +11,18 @@ public class GameOverScreen : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<PlayerLife>();
-
+      player = GetComponent<PlayerLife>();
     }
 
     void Update()
     {
-        if (player.life <= 0) 
+        if (player.Die()) 
         {
             gameOver.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+
+            return;
         }
     }
 

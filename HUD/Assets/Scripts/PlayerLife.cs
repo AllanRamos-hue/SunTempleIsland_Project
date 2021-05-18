@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    [Range(0,100)] public float life;
+    public float life;
 
-    public float currentLife;
+    float currentLife;
 
     public Slider lifeBar;
 
@@ -25,7 +25,8 @@ public class PlayerLife : MonoBehaviour
 
     public bool Die()
     {
-        if (currentLife <= 0) return true;
+        if (currentLife <= 0) 
+            return true;
         
         return false;
        
