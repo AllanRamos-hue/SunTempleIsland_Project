@@ -11,6 +11,8 @@ public class SelectionController : MonoBehaviour
 
     public GameObject text;
 
+    public Transform gunsParent;
+
     PlayerLife life;
 
     private void Start()
@@ -30,6 +32,9 @@ public class SelectionController : MonoBehaviour
             PickUpMedKit();
             PickUpAmmo();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+            ChangeGun();
 
     }
 
@@ -60,6 +65,23 @@ public class SelectionController : MonoBehaviour
             }
 
             _selection = selection;
+        }
+    }
+
+    void ChangeGun()
+    {
+        if(gunsParent.GetChild(0).gameObject.activeInHierarchy || gunsParent.GetChild(1).gameObject.activeInHierarchy)
+        {
+            gunsParent.GetChild(0).gameObject.SetActive(false);
+
+            for (int i = 0; i < gunsParent.childCount; i++)
+            {
+                if (i > 0)
+                {
+                    gunsParent.GetChild(i).gameObject.SetActive(true);
+                    gunsParent.GetChild(i).transform.SetAsFirstSibling();
+                }
+            }
         }
     }
 
