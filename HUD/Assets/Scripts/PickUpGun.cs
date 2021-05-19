@@ -10,21 +10,23 @@ public class PickUpGun : MonoBehaviour
     
     public void PickUp()
     {
-        if(gameObject.name == objectPickepUp.name)
+        objectPickepUp.SetActive(true);
+
+        objectPickepUp.transform.SetParent(gunsParent);
+
+        objectPickepUp.transform.SetPositionAndRotation(gunsParent.position, gunsParent.rotation);
+
+        objectPickepUp.transform.SetAsFirstSibling();
+
+        gameObject.SetActive(false);
+
+        for (int i = 0; i < gunsParent.childCount; i++)
         {
-            objectPickepUp.SetActive(true);
-
-            objectPickepUp.transform.SetAsFirstSibling(); 
-
-            gameObject.SetActive(false);
-
-            for (int i = 0; i < gunsParent.childCount; i++)
+            if (i != 0)
             {
-                if (i != 0)
-                {
-                    gunsParent.GetChild(i).gameObject.SetActive(false);
-                }
+                gunsParent.GetChild(i).gameObject.SetActive(false);
             }
         }
+        
     }
 }

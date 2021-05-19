@@ -70,7 +70,7 @@ public class SelectionController : MonoBehaviour
 
     void ChangeGun()
     {
-        if(gunsParent.GetChild(0).gameObject.activeInHierarchy || gunsParent.GetChild(1).gameObject.activeInHierarchy)
+        if(gunsParent.childCount == 2)
         {
             gunsParent.GetChild(0).gameObject.SetActive(false);
 
