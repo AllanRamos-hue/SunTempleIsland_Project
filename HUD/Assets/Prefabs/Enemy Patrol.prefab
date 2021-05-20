@@ -432,13 +432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7470555db13364fa829f43103002d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 100
   minDistance: 5
-  spots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spots: []
 --- !u!136 &2434014980932821773
 CapsuleCollider:
   m_ObjectHideFlags: 0

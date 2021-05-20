@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 1
-  damage: -110
-  onHitMine:
-    m_PersistentCalls:
-      m_Calls: []
+  damage: -50
+  explosinFX: {fileID: 0}
 --- !u!1001 &8217049602896357705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,7 +24,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646946700311360, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_Name
-      value: S-Mine
+      value: S-Mine Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_RootOrder
@@ -34,15 +32,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8815742
+      value: 238.96
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: 6.676
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3459511
+      value: 473.856
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_LocalRotation.w

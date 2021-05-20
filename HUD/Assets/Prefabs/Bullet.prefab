@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunName: M2
-  damage: -15
+  damage: -5
 --- !u!1 &8008918380550690941
 GameObject:
   m_ObjectHideFlags: 0
