@@ -5,12 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    public float life = 100;
     public float minDistance = 5;
     public Transform[] spots;
 
     int index;
-    int i;
 
     NavMeshAgent agent;
     Animator anim;
@@ -27,7 +25,6 @@ public class EnemyPatrol : MonoBehaviour
         target = GameObject.Find("Player");
 
         index = 0;
-        i = 1;
         agent.SetDestination(spots[index].transform.position);
 
     }
@@ -89,22 +86,5 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        life += damage;
-
-        Die();
-
-        Debug.Log("Dano");
-    }
-
-    void Die()
-    {
-        if (life <= 0)
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

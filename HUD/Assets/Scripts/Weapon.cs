@@ -15,7 +15,8 @@ public class Weapon : MonoBehaviour
     EnemyPatrol patrol;
 
     [SerializeField] bool isAutomatic;
- 
+    [SerializeField] bool isRocket;
+
     [SerializeField] int magAmmo = 10;
     [Range(0, 200)] int totalAmmo = 30;
 
@@ -29,6 +30,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleParticle;
     
     [SerializeField] Transform muzzle;
+    [SerializeField] GameObject rocket;
 
     [SerializeField] LayerMask bulletLayer;
 
@@ -42,7 +44,7 @@ public class Weapon : MonoBehaviour
 
         gunAnim = GetComponent<Animator>();
 
-        totalAmmo = magAmmo * 4;
+        totalAmmo = magAmmo * 3;
     }
     
     void Update()
@@ -94,6 +96,12 @@ public class Weapon : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(center);
         RaycastHit hit;
 
+        if (isRocket)
+        {
+            GameObject prefab = Instantiate(rocket, muzzle.position, Quaternion.identity);
+            prefab.GetComponent<Rigidbody>().AddForce(muzzle.forward * 500);
+        }
+
         if (Physics.Raycast(ray, out hit, bulletRange, bulletLayer))
         {
             if (isAutomatic)
@@ -103,9 +111,7 @@ public class Weapon : MonoBehaviour
                     cooldown = Time.time + 1f;
                 }
             }
-
-            --currentAmmo;
-
+            
             Quaternion markSurface = Quaternion.LookRotation(-hit.normal);
 
             Vector3 markOffset = hit.point + hit.normal / 100;
@@ -114,14 +120,15 @@ public class Weapon : MonoBehaviour
             Destroy(bulletPrefab, 3);
 
             if (muzzleParticle)
-                muzzleParticle.Play();   
-            
-            if(hit.transform.gameObject.CompareTag("Enemy"))
-            {
-                hit.transform.GetComponent<Enemy>().TakeDamage(damage);
-            }
-        }
+                muzzleParticle.Play();
 
+            if (hit.transform.gameObject.CompareTag("Enemy"))
+            {
+                hit.transform.GetComponent<EnemyLife>().TakeDamage(damage);
+            }
+                 
+        }
+        --currentAmmo;
     }
 
     public void ReceiveAmmo(int ammo)

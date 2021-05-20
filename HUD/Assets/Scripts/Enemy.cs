@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float life = 100;
     public float minDistance = 5;
 
     NavMeshAgent agent;
@@ -62,21 +61,5 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public void TakeDamage(float damage)
-    {
-        life += damage;
-
-        Die();
-
-        Debug.Log(life);
-    }
-
-    void Die()
-    {
-        if (life <= 0)
-        {
-            gameObject.SetActive(false);
-        }
-
-    }
+    
 }

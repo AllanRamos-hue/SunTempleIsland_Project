@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Mine : MonoBehaviour
 {
     [SerializeField] float maxDistance;
-    [SerializeField] float damage = -110;
+    [SerializeField] float damage = -50;
 
     public ParticleSystem explosinFX;
 
@@ -26,7 +26,6 @@ public class Mine : MonoBehaviour
 
             if(explosinFX)
                 explosinFX.Play();
-
         }        
     }
 
