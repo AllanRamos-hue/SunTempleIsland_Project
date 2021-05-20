@@ -11,6 +11,9 @@ public class Weapon : MonoBehaviour
 
     Animator gunAnim;
 
+    Enemy enemy;
+    EnemyPatrol patrol;
+
     [SerializeField] bool isAutomatic;
  
     [SerializeField] int magAmmo = 10;
@@ -19,6 +22,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Text ammoText;
     
     [SerializeField] float bulletRange;
+    [SerializeField] float damage = -30;
     [SerializeField] float fireRate = 1;
 
     [SerializeField] GameObject bulletMark;
@@ -110,7 +114,12 @@ public class Weapon : MonoBehaviour
             Destroy(bulletPrefab, 3);
 
             if (muzzleParticle)
-                muzzleParticle.Play();             
+                muzzleParticle.Play();   
+            
+            if(hit.transform.gameObject.CompareTag("Enemy"))
+            {
+                hit.transform.GetComponent<Enemy>().TakeDamage(damage);
+            }
         }
 
     }

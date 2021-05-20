@@ -3,43 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyPatrol : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public float life = 100;
     public float minDistance = 5;
-    public Transform[] spots;
-
-    int index;
-    int i;
 
     NavMeshAgent agent;
     Animator anim;
 
-    GameObject target; 
+    GameObject target;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
-        anim.SetBool("Walk", false);
-
         target = GameObject.Find("Player");
-
-        index = 0;
-        i = 1;
-        agent.SetDestination(spots[index].transform.position);
-
     }
 
     void Update()
     {
-        Patrol();
-
-        if(SpotPlayer())
+        if (SpotPlayer())
         {
             Chasing();
-        }   
+        }
     }
 
     void Chasing()
@@ -47,26 +34,8 @@ public class EnemyPatrol : MonoBehaviour
         Vector3 targetPos = target.transform.position;
 
         anim.SetBool("Walk", true);
-        
+
         agent.SetDestination(targetPos);
-    }
-
-    void Patrol()
-    {
-        anim.SetBool("Walk", true);
-
-        if (agent.remainingDistance < 0.5f)
-        {
-            index++;
-
-            if (index >= spots.Length)
-            {
-                index = 0;
-
-            }
-
-            agent.SetDestination(spots[index].transform.position);
-        }
     }
 
     bool SpotPlayer()
@@ -78,15 +47,17 @@ public class EnemyPatrol : MonoBehaviour
             Ray ray = new Ray(transform.position, targetPos - transform.position);
 
             Debug.DrawRay(transform.position + Vector3.up, targetPos - transform.position, Color.green);
-            
+
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit, 5))
-                if(hit.transform == target.transform)
+            if (Physics.Raycast(ray, out hit, 5))
+                if (hit.transform == target.transform)
                 {
                     return true;
-                } 
+                }
         }
+
+        anim.SetBool("Walk", false);
 
         return false;
     }
@@ -97,7 +68,7 @@ public class EnemyPatrol : MonoBehaviour
 
         Die();
 
-        Debug.Log("Dano");
+        Debug.Log(life);
     }
 
     void Die()
@@ -106,5 +77,6 @@ public class EnemyPatrol : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
     }
 }
