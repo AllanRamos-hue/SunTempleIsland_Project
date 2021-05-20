@@ -16,6 +16,13 @@ public class Mine : MonoBehaviour
     {
         player = FindObjectOfType<PlayerLife>();
     }
+
+    private void OnDisable()
+    {
+        if (explosinFX)
+            explosinFX.Play();
+    }
+
     void Update()
     {
         Debug.DrawRay(transform.position + Vector3.up, player.transform.position - transform.position, Color.red);
@@ -24,8 +31,8 @@ public class Mine : MonoBehaviour
         {
             player.ReceiveDamage(damage);
 
-            if(explosinFX)
-                explosinFX.Play();
+            gameObject.SetActive(false);
+ 
         }        
     }
 

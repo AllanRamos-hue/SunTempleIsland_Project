@@ -15,6 +15,19 @@ MonoBehaviour:
   maxDistance: 1
   damage: -50
   explosinFX: {fileID: 0}
+--- !u!114 &6512411352365498569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218236922329289225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11419d0ee4e9e354fb5adb291e3f3e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 1
 --- !u!1001 &8217049602896357705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,7 +37,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646946700311360, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_Name
-      value: S-Mine Variant
+      value: S-Mine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646946700311360, guid: abbab26d658871944a20071c62234860, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4335121845197070, guid: abbab26d658871944a20071c62234860, type: 3}
       propertyPath: m_RootOrder

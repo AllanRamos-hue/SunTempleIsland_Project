@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTurret : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public EnemyLife enemy;
 
     public float range = 10;
     public float fireRate = 0.2f;
@@ -26,7 +27,8 @@ public class EnemyTurret : MonoBehaviour
     }
     void Update()
     {
-        DetectPlayer(range);
+        if(EnemyIsAlive())
+            DetectPlayer(range);
     }
 
     void DetectPlayer(float _range)
@@ -39,6 +41,7 @@ public class EnemyTurret : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, _range))
             {
+
                 if (hit.transform == target)
                 {
                     transform.LookAt(target);
@@ -66,6 +69,16 @@ public class EnemyTurret : MonoBehaviour
 
             Destroy(prefab, 3);
         }    
+    }
+
+    bool EnemyIsAlive()
+    {
+        if(!enemy.gameObject.activeSelf)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     //IEnumerator ShootingTime()

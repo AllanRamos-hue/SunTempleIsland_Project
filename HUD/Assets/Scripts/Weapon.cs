@@ -98,8 +98,17 @@ public class Weapon : MonoBehaviour
 
         if (isRocket)
         {
-            GameObject prefab = Instantiate(rocket, muzzle.position, Quaternion.identity);
-            prefab.GetComponent<Rigidbody>().AddForce(muzzle.forward * 500);
+            Vector3 position = muzzle.position;
+
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, muzzle.forward);
+
+            GameObject prefab = Instantiate(rocket, position, rotation);
+            
+            transform.GetChild(0).gameObject.SetActive(false);
+
+            prefab.GetComponent<Rigidbody>().AddForce(-muzzle.forward * 1000);
+
+            Debug.Log("Bazuca");
         }
 
         if (Physics.Raycast(ray, out hit, bulletRange, bulletLayer))
@@ -146,11 +155,14 @@ public class Weapon : MonoBehaviour
         gunAnim.SetBool("Reloading", true);
         
         yield return new WaitForSeconds(reloadTime);
-        
+
         totalAmmo -= magAmmo - currentAmmo;
             
-        currentAmmo = magAmmo; 
-        
+        currentAmmo = magAmmo;
+
+        if (isRocket)
+            transform.GetChild(0).gameObject.SetActive(true);
+
         isReloading = false;
 
         gunAnim.SetBool("Reloading", false);

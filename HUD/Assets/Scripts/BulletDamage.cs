@@ -20,5 +20,10 @@ public class BulletDamage : MonoBehaviour
         {
             player.ReceiveDamage(damage);
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyLife>().TakeDamage(damage);
+        }
     }
 }

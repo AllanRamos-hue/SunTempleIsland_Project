@@ -13,13 +13,26 @@ public class CharacterMovement : MonoBehaviour
     
     CharacterController controller;
 
+    PlayerLife player;
+
     Vector3 move;
+
+    Vector3 respawnPos;
+    Quaternion respawnRot;
+
+    bool respawning;
+
 
     void Start()
     {
         move = Vector3.zero;
 
         controller = GetComponent<CharacterController>();
+
+        player = FindObjectOfType<PlayerLife>();
+
+        respawnPos = transform.position;
+        respawnRot = transform.rotation;
     }
 
     void Update()
@@ -30,7 +43,13 @@ public class CharacterMovement : MonoBehaviour
             Jump();
         }
 
-        Move();      
+        Move();     
+        
+        if(player.Die())
+        {
+            StartCoroutine(Respawn());
+            return;
+        }
     }
 
      void Move()
@@ -52,5 +71,21 @@ public class CharacterMovement : MonoBehaviour
         {
             move.y = jumpForce;
         }
+    }
+
+    IEnumerator Respawn()
+    {
+        if (respawning) yield break;
+
+        Debug.Log("Reviveu");
+
+        respawning = true;
+
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
+        player.Revive();
+
+        respawning = false;
     }
 }
