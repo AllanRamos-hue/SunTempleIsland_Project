@@ -14,7 +14,6 @@ public class PlayerLife : MonoBehaviour
     private void Start()
     {
         currentLife = life;
-
     }
 
     private void Update()

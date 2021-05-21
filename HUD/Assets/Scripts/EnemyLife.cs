@@ -11,8 +11,6 @@ public class EnemyLife : MonoBehaviour
         life += damage;
 
         Die();
-
-        Debug.Log(life);
     }
 
     void Die()

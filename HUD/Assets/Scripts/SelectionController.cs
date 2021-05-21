@@ -73,10 +73,11 @@ public class SelectionController : MonoBehaviour
         if(gunsParent.childCount >= 2)
         {
             gunsParent.GetChild(0).gameObject.SetActive(false);
+            gunsParent.GetChild(0).SetAsLastSibling();
 
             for (int i = 0; i < gunsParent.childCount; i++)
             {
-                if (i > 0)
+                if (i == 0)
                 {
                     gunsParent.GetChild(i).gameObject.SetActive(true);
                     gunsParent.GetChild(i).transform.SetAsFirstSibling();

@@ -60,7 +60,13 @@ public class Weapon : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 if (currentAmmo > 0)
+                {
+                    if (muzzleParticle)
+                        muzzleParticle.Play();
+
                     Shoot();
+                }
+                   
             }
         }
         else
@@ -69,7 +75,11 @@ public class Weapon : MonoBehaviour
             {
                 if (currentAmmo > 0)
                 {
+                    if (muzzleParticle)
+                        muzzleParticle.Play();
+                    
                     Shoot();
+                    
                     cooldown = Time.time + 1f / fireRate;
                 }
                     
@@ -127,9 +137,6 @@ public class Weapon : MonoBehaviour
 
             GameObject bulletPrefab = Instantiate(bulletMark, markOffset, markSurface);
             Destroy(bulletPrefab, 3);
-
-            if (muzzleParticle)
-                muzzleParticle.Play();
 
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {

@@ -73,6 +73,14 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fence"))
+        {
+            player.ReceiveDamage(-15);
+        }    
+    }
+
     IEnumerator Respawn()
     {
         if (respawning) yield break;
