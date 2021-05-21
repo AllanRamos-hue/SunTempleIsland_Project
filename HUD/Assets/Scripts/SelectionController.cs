@@ -31,6 +31,9 @@ public class SelectionController : MonoBehaviour
             PickUpGun();
             PickUpMedKit();
             PickUpAmmo();
+            PickUpKey();
+            OpenDoor();
+
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -121,6 +124,26 @@ public class SelectionController : MonoBehaviour
             {
                 pickUpAmmo.PickUp();
             }
+        }
+    }
+
+    void PickUpKey()
+    {
+        Key key = _selection.GetComponent<Key>();
+
+        if(key)
+        {
+            key.PickUp();
+        }
+    }
+
+    void OpenDoor()
+    {
+        OpenObject door = _selection.GetComponent<OpenObject>();
+
+        if(door)
+        {
+            door.PickUp();
         }
     }
 }

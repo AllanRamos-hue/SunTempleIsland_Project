@@ -19,6 +19,7 @@ public class BulletDamage : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             player.ReceiveDamage(damage);
+            gameObject.SetActive(false);
         }
 
         if (other.CompareTag("Enemy"))

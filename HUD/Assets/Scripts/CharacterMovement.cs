@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
@@ -10,6 +11,8 @@ public class CharacterMovement : MonoBehaviour
     public float jumpForce = 5;
 
     public float playerGravity = 8;
+
+    public Image fade;
     
     CharacterController controller;
 
@@ -25,14 +28,14 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
+        respawnPos = transform.position;
+        respawnRot = transform.rotation;
+        
         move = Vector3.zero;
 
         controller = GetComponent<CharacterController>();
 
-        player = FindObjectOfType<PlayerLife>();
-
-        respawnPos = transform.position;
-        respawnRot = transform.rotation;
+        player = FindObjectOfType<PlayerLife>();    
     }
 
     void Update()
@@ -84,15 +87,50 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator Respawn()
     {
         if (respawning) yield break;
-
-        --GameOverScreen.round;
-
+        
+        //--GameOverScreen.round;
+        
         respawning = true;
 
-        transform.SetPositionAndRotation(respawnPos, respawnRot);
+        EnemyTurret[] turrets = FindObjectsOfType<EnemyTurret>();
 
+        foreach (EnemyTurret t in turrets)
+        {
+            t.enabled = false;
+        }
+
+        GetComponent<CharacterMovement>().enabled = false;
+        GetComponent<PlayerVision>().enabled = false;
+
+        Color color = Color.black;
+        color.a = 0;
+        
+        while (color.a < 1)
+        {
+            color.a += Time.deltaTime / 2;
+            fade.color = color;
+            yield return null;
+        }
+
+        transform.position = respawnPos;
+        transform.rotation = respawnRot;
         player.Revive();
 
-        respawning = false;
+        GetComponent<CharacterMovement>().enabled = true;
+        GetComponent<PlayerVision>().enabled = true;
+
+        foreach (EnemyTurret t in turrets)
+        {
+            t.enabled = true;
+        }
+
+        while (color.a > 0)
+        {
+            color.a -= Time.deltaTime / 2;
+            fade.color = color;
+            yield return null;
+        }
+
+        respawning = false;   
     }
 }

@@ -94,6 +94,7 @@ namespace SunTemple
 
 				Ray ray = Cam.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0));
 				RaycastHit hit;
+				Key key = FindObjectOfType<Key>();
 											
 				if (DoorCollider.Raycast(ray, out hit, MaxDistance)){					
 					if (IsLocked == false){

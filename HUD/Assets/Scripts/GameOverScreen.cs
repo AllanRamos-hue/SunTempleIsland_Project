@@ -15,8 +15,6 @@ public class GameOverScreen : MonoBehaviour
     }
     void Update()
     {
-        if (player.Die()) --round;
-
         if (round == 0) gameOver.SetActive(true);
 
     }
