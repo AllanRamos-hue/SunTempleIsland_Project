@@ -5,23 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    private PlayerLife player;
     public GameObject gameOver;
+    PlayerLife player;
+    public static int round = 3;
 
-
-    void Start()
+    private void Start()
     {
-      player = GetComponent<PlayerLife>();
+        player = FindObjectOfType<PlayerLife>();
     }
-
     void Update()
     {
-        if (player.Die() == true) 
-        {
-            gameOver.SetActive(true);
+        if (player.Die()) --round;
 
-            Cursor.lockState = CursorLockMode.None;
-        }
+        if (round == 0) gameOver.SetActive(true);
+
     }
 
     public void RestartGame()

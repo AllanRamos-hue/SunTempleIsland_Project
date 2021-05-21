@@ -85,12 +85,11 @@ public class CharacterMovement : MonoBehaviour
     {
         if (respawning) yield break;
 
-        Debug.Log("Reviveu");
+        --GameOverScreen.round;
 
         respawning = true;
 
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+        transform.SetPositionAndRotation(respawnPos, respawnRot);
 
         player.Revive();
 

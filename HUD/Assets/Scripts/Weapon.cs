@@ -113,12 +113,11 @@ public class Weapon : MonoBehaviour
             Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, muzzle.forward);
 
             GameObject prefab = Instantiate(rocket, position, rotation);
+            Destroy(prefab, 6);
             
             transform.GetChild(0).gameObject.SetActive(false);
 
             prefab.GetComponent<Rigidbody>().AddForce(-muzzle.forward * 1000);
-
-            Debug.Log("Bazuca");
         }
 
         if (Physics.Raycast(ray, out hit, bulletRange, bulletLayer))
