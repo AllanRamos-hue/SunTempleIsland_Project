@@ -25,6 +25,13 @@ public class BulletDamage : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyLife>().TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
+
+        if(other.CompareTag("Shootable"))
+        {
+            other.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

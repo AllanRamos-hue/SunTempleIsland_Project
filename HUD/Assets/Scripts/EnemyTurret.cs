@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyTurret : MonoBehaviour
 {
+    public bool fixDirection;
     public GameObject projectilePrefab;
     public EnemyLife enemy;
 
     public float range = 10;
     public float fireRate = 0.1f;
-    public float timeToReload = 5;
+    public float bulletForce = 500;
 
     Transform turretBody;
     Transform target;
@@ -55,22 +56,14 @@ public class EnemyTurret : MonoBehaviour
         }
     }
 
-    //IEnumerator ShootingTime()
-    //{
-    //    if (shooting) yield break;
-
-    //    shooting = true;
-
-    //    Shoot(fireRate);
-
-    //    yield return new WaitForSeconds(timeToReload);
-
-    //    shooting = false;
-    //}
-
-
     void Shoot(float _fireRate)
     {
+        float multiplier = 1;
+
+
+        if (fixDirection)
+            multiplier = -1;
+        
         if (cooldown < Time.time)
         {
             cooldown = Time.time + _fireRate;
@@ -79,16 +72,13 @@ public class EnemyTurret : MonoBehaviour
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, muzzle.forward);
 
-            GameObject prefab = Instantiate(projectilePrefab, position, rotation);
+            GameObject prefab = Instantiate(projectilePrefab, position, rotation);   
 
-            prefab.GetComponent<Rigidbody>().AddForce(muzzle.forward * 500);
+            prefab.GetComponent<Rigidbody>().AddForce(multiplier * muzzle.forward * 500);
 
             Destroy(prefab, 3);
         }
     }
-
-
-
 
     bool EnemyIsAlive()
     {
