@@ -3181,6 +3181,7 @@ MonoBehaviour:
   fireRate: 0.2
   bulletForce: 500
   muzzle: {fileID: 1178210550674242776}
+  shootSFX: {fileID: 8300000, guid: 30ec75974a652d646a3c014e71de65d6, type: 3}
 --- !u!1 &9187155638388196423
 GameObject:
   m_ObjectHideFlags: 0

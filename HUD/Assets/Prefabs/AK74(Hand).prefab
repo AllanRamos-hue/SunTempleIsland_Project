@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 6947552364613872342}
   - component: {fileID: 6947552364613872343}
   m_Layer: 0
-  m_Name: AK74
+  m_Name: AK74(Hand)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,17 +374,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAutomatic: 1
+  isRocket: 0
   magAmmo: 30
   ammoText: {fileID: 0}
   bulletRange: 25
-  damage: -30
+  damage: -15
   fireRate: 8
   bulletMark: {fileID: 9009296349054336261, guid: d3fa1ed22b37ce247b229eeb669eea1d, type: 3}
   muzzleParticle: {fileID: 7109757771947607648}
   muzzle: {fileID: 6947552363366745159}
+  rocket: {fileID: 0}
   bulletLayer:
     serializedVersion: 2
     m_Bits: 1
+  shootSFX: {fileID: 8300000, guid: b3ba08d82a40eb74ebb399dee8c89d38, type: 3}
+  noAmmoSFX: {fileID: 8300000, guid: afc936ce73a33294a903a5680aa570be, type: 3}
+  reloadSFX: {fileID: 8300000, guid: 379c367f92e4c7c4dbe7709ef109e448, type: 3}
 --- !u!95 &6947552364613872343
 Animator:
   serializedVersion: 3
