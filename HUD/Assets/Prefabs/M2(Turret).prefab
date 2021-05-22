@@ -3178,7 +3178,7 @@ MonoBehaviour:
   enemy: {fileID: 1084102115911747371}
   range: 10
   fireRate: 0.2
-  timeToReload: 3
+  timeToReload: 2
   muzzle: {fileID: 1178210550674242776}
 --- !u!1 &9187155638388196423
 GameObject:

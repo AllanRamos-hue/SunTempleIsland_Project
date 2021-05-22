@@ -8,7 +8,7 @@ public class EnemyTurret : MonoBehaviour
     public EnemyLife enemy;
 
     public float range = 10;
-    public float fireRate = 0.2f;
+    public float fireRate = 0.1f;
     public float timeToReload = 5;
 
     Transform turretBody;
@@ -17,6 +17,8 @@ public class EnemyTurret : MonoBehaviour
     public Transform muzzle;
 
     float cooldown;
+
+    bool shooting;
 
     void Start()
     {
@@ -53,6 +55,20 @@ public class EnemyTurret : MonoBehaviour
         }
     }
 
+    //IEnumerator ShootingTime()
+    //{
+    //    if (shooting) yield break;
+
+    //    shooting = true;
+
+    //    Shoot(fireRate);
+
+    //    yield return new WaitForSeconds(timeToReload);
+
+    //    shooting = false;
+    //}
+
+
     void Shoot(float _fireRate)
     {
         if (cooldown < Time.time)
@@ -68,8 +84,11 @@ public class EnemyTurret : MonoBehaviour
             prefab.GetComponent<Rigidbody>().AddForce(muzzle.forward * 500);
 
             Destroy(prefab, 3);
-        }    
+        }
     }
+
+
+
 
     bool EnemyIsAlive()
     {
