@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   lifeBar: {fileID: 0}
-  damagesSFX: []
+  deathSFX: {fileID: 8300000, guid: a39b4b5f913116c45bc8309e0845ea1b, type: 3}
 --- !u!114 &1066832146407328346
 MonoBehaviour:
   m_ObjectHideFlags: 0

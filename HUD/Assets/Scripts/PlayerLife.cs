@@ -11,7 +11,7 @@ public class PlayerLife : MonoBehaviour
 
     public Slider lifeBar;
 
-    public AudioClip[] damagesSFX;
+    public AudioClip deathSFX;
 
     private void Start()
     {
@@ -28,6 +28,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (currentLife <= 0)
         {
+            AudioManager.PlaySFX(deathSFX);
             return true;
         }
 

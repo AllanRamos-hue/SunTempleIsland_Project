@@ -104,6 +104,8 @@ public class CharacterMovement : MonoBehaviour
 
         Color color = Color.black;
         color.a = 0;
+
+        yield return new WaitForSeconds(1);
         
         while (color.a < 1)
         {
