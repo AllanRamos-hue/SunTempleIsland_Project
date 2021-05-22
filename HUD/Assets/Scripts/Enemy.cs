@@ -6,11 +6,14 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float minDistance = 5;
+    public float attackDamage = -30;
 
     NavMeshAgent agent;
     Animator anim;
 
     GameObject target;
+
+    bool attacking;
 
     void Start()
     {
@@ -32,9 +35,29 @@ public class Enemy : MonoBehaviour
     {
         Vector3 targetPos = target.transform.position;
 
+        agent.SetDestination(targetPos);
+
         anim.SetBool("Walk", true);
 
-        agent.SetDestination(targetPos);
+        if (Vector3.Distance(transform.position, targetPos) < 2)
+        {
+            StartCoroutine(Attack());
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        if (attacking) yield break;
+
+        attacking = true;
+
+        PlayerLife player = target.GetComponent<PlayerLife>();
+        
+        player.ReceiveDamage(attackDamage);
+
+        yield return new WaitForSeconds(1);
+
+        attacking = false;
     }
 
     bool SpotPlayer()

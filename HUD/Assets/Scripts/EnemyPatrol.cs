@@ -5,15 +5,19 @@ using UnityEngine.AI;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    public float minDistance = 5;
+   
     public Transform[] spots;
+    public float minDistance = 5;
+    public float attackDamage = -30;
 
     int index;
 
     NavMeshAgent agent;
     Animator anim;
 
-    GameObject target; 
+    GameObject target;
+
+    bool attacking;
 
     void Start()
     {
@@ -46,6 +50,11 @@ public class EnemyPatrol : MonoBehaviour
         anim.SetBool("Walk", true);
         
         agent.SetDestination(targetPos);
+
+        if (Vector3.Distance(transform.position, targetPos) < 2)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     void Patrol()
@@ -64,6 +73,21 @@ public class EnemyPatrol : MonoBehaviour
 
             agent.SetDestination(spots[index].transform.position);
         }
+    }
+
+    IEnumerator Attack()
+    {
+        if (attacking) yield break;
+
+        attacking = true;
+
+        PlayerLife player = target.GetComponent<PlayerLife>();
+
+        player.ReceiveDamage(attackDamage);
+
+        yield return new WaitForSeconds(1);
+
+        attacking = false;
     }
 
     bool SpotPlayer()

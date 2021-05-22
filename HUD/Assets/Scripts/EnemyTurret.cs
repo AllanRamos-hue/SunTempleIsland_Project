@@ -80,20 +80,4 @@ public class EnemyTurret : MonoBehaviour
 
         return true;
     }
-
-    //IEnumerator ShootingTime()
-    //{
-    //    Shoot(fireRate);
-        
-    //    yield return new WaitForSeconds(8);
-
-    //    StartCoroutine(ReloadTime(timeToReload));
-    //}
-
-    //IEnumerator ReloadTime(float _time)
-    //{
-    //    yield return new WaitForSeconds(_time);
-
-    //    Shoot(fireRate);
-    //}
 }
