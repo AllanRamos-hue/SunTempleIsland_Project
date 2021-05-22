@@ -11,6 +11,8 @@ public class PlayerLife : MonoBehaviour
 
     public Slider lifeBar;
 
+    public AudioClip[] damagesSFX;
+
     private void Start()
     {
         currentLife = life;

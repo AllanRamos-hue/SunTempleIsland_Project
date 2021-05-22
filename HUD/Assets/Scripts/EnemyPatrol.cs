@@ -10,6 +10,8 @@ public class EnemyPatrol : MonoBehaviour
     public float minDistance = 5;
     public float attackDamage = -30;
 
+    public AudioClip attackSFX;
+
     int index;
 
     NavMeshAgent agent;
@@ -84,6 +86,8 @@ public class EnemyPatrol : MonoBehaviour
         PlayerLife player = target.GetComponent<PlayerLife>();
 
         player.ReceiveDamage(attackDamage);
+
+        AudioManager.PlaySFX(attackSFX);
 
         yield return new WaitForSeconds(1);
 

@@ -236,6 +236,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   playerGravity: 10
+  fade: {fileID: 0}
 --- !u!114 &1066832146407328322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   gunsParent: {fileID: 1066832146858393546}
+  changeGunSFX: {fileID: 8300000, guid: 8a64548598a798c4b897baeedb9a36d6, type: 3}
 --- !u!114 &1066832146407328349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   lifeBar: {fileID: 0}
+  damagesSFX: []
 --- !u!114 &1066832146407328346
 MonoBehaviour:
   m_ObjectHideFlags: 0

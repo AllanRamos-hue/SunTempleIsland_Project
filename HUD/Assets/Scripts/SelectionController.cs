@@ -13,12 +13,10 @@ public class SelectionController : MonoBehaviour
 
     public Transform gunsParent;
 
-    PlayerLife life;
+    public AudioClip changeGunSFX;
 
     private void Start()
     {
-        life = GetComponent<PlayerLife>();
-
         text.SetActive(false);
     }
 
@@ -86,6 +84,8 @@ public class SelectionController : MonoBehaviour
                     gunsParent.GetChild(i).transform.SetAsFirstSibling();
                 }
             }
+
+            AudioManager.PlaySFX(changeGunSFX);
         }
     }
 
