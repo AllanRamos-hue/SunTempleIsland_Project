@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 2371890963924284393}
   - component: {fileID: 2371890963924284392}
   m_Layer: 0
-  m_Name: M1911
+  m_Name: M1911(Hand)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,17 +344,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAutomatic: 0
+  isRocket: 0
   magAmmo: 8
   ammoText: {fileID: 0}
   bulletRange: 18
-  damage: -30
+  damage: -25
   fireRate: 1
   bulletMark: {fileID: 9009296349054336261, guid: d3fa1ed22b37ce247b229eeb669eea1d, type: 3}
   muzzleParticle: {fileID: 2462030102484818027}
   muzzle: {fileID: 2371890964707576258}
+  rocket: {fileID: 0}
   bulletLayer:
     serializedVersion: 2
     m_Bits: 1
+  shootSFX: {fileID: 8300000, guid: e8248073fe163e448b7d815adc7f96c0, type: 3}
+  noAmmoSFX: {fileID: 8300000, guid: afc936ce73a33294a903a5680aa570be, type: 3}
+  reloadSFX: {fileID: 8300000, guid: 379c367f92e4c7c4dbe7709ef109e448, type: 3}
 --- !u!95 &2371890963924284392
 Animator:
   serializedVersion: 3

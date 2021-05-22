@@ -412,6 +412,9 @@ MonoBehaviour:
   bulletLayer:
     serializedVersion: 2
     m_Bits: 0
+  shootSFX: {fileID: 0}
+  noAmmoSFX: {fileID: 0}
+  reloadSFX: {fileID: 0}
 --- !u!95 &236150160
 Animator:
   serializedVersion: 3
@@ -1231,6 +1234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bazuca(Turret)
       objectReference: {fileID: 0}
+    - target: {fileID: 3090908755172707734, guid: 376fac02f83b9e54bbe7e2a391020a65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3094433380750997808, guid: 376fac02f83b9e54bbe7e2a391020a65, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1807,10 +1814,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1034014412732024545, guid: b14205791fa673a44bc6418b1a73129a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9181367782856909833, guid: b14205791fa673a44bc6418b1a73129a, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -2128,6 +2131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M2(Turret)
       objectReference: {fileID: 0}
+    - target: {fileID: 9186915236556705967, guid: b14205791fa673a44bc6418b1a73129a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b14205791fa673a44bc6418b1a73129a, type: 3}
 --- !u!4 &1525322950238176652
@@ -2426,10 +2433,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2371890963924284393, guid: 78620ca2b0baf1a4a8a0345323743996, type: 3}
-      propertyPath: damage
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2371890963924284393, guid: 78620ca2b0baf1a4a8a0345323743996, type: 3}
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 1064779865}
@@ -2516,7 +2519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433305248678133873, guid: 1d99f23590e102c4aa08a14f7f95dd7d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2433305248678133887, guid: 1d99f23590e102c4aa08a14f7f95dd7d, type: 3}
       propertyPath: m_Speed
@@ -2698,10 +2701,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6947552364613872342, guid: a5dc53907a12e5844a94ac1f2e1e0999, type: 3}
-      propertyPath: damage
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6947552364613872342, guid: a5dc53907a12e5844a94ac1f2e1e0999, type: 3}
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 1064779865}
@@ -2877,7 +2876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1418292022888996330, guid: e20ecfbbef3a2d84eb7b153c7256c33a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6205015230479738558, guid: e20ecfbbef3a2d84eb7b153c7256c33a, type: 3}
       propertyPath: attackDamage

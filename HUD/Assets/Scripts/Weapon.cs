@@ -11,9 +11,6 @@ public class Weapon : MonoBehaviour
 
     Animator gunAnim;
 
-    Enemy enemy;
-    EnemyPatrol patrol;
-
     [SerializeField] bool isAutomatic;
     [SerializeField] bool isRocket;
 
@@ -33,6 +30,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject rocket;
 
     [SerializeField] LayerMask bulletLayer;
+
+    public AudioClip shootSFX;
+    public AudioClip noAmmoSFX;
+    public AudioClip reloadSFX;
 
     float cooldown = 0;
 
@@ -66,6 +67,10 @@ public class Weapon : MonoBehaviour
 
                     Shoot();
                 }
+                else
+                {
+                    AudioManager.PlaySFX(noAmmoSFX);
+                }
                    
             }
         }
@@ -82,7 +87,6 @@ public class Weapon : MonoBehaviour
                     
                     cooldown = Time.time + 1f / fireRate;
                 }
-                    
             }
         }
         
@@ -91,6 +95,7 @@ public class Weapon : MonoBehaviour
             if (currentAmmo < magAmmo && totalAmmo > 0)
             {
                 StartCoroutine(ReloadAmmo());
+
                 return;
             }        
         }       
@@ -143,6 +148,9 @@ public class Weapon : MonoBehaviour
             }
                  
         }
+            
+        AudioManager.PlaySFX(shootSFX);
+        
         --currentAmmo;
     }
 
@@ -159,8 +167,10 @@ public class Weapon : MonoBehaviour
         isReloading = true;
 
         gunAnim.SetBool("Reloading", true);
-        
+
         yield return new WaitForSeconds(reloadTime);
+
+        AudioManager.PlaySFX(reloadSFX);
 
         totalAmmo -= magAmmo - currentAmmo;
             

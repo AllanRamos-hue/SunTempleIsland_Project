@@ -11,15 +11,14 @@ public class EnemyTurret : MonoBehaviour
     public float range = 10;
     public float fireRate = 0.1f;
     public float bulletForce = 500;
+    public Transform muzzle;
+
+    public AudioClip shootSFX;
 
     Transform turretBody;
     Transform target;
-
-    public Transform muzzle;
-
-    float cooldown;
-
-    bool shooting;
+    
+    float cooldown;  
 
     void Start()
     {
@@ -60,7 +59,6 @@ public class EnemyTurret : MonoBehaviour
     {
         float multiplier = 1;
 
-
         if (fixDirection)
             multiplier = -1;
         
@@ -72,7 +70,9 @@ public class EnemyTurret : MonoBehaviour
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, muzzle.forward);
 
-            GameObject prefab = Instantiate(projectilePrefab, position, rotation);   
+            GameObject prefab = Instantiate(projectilePrefab, position, rotation);
+
+            AudioManager.PlaySFX(shootSFX, 0.05f);
 
             prefab.GetComponent<Rigidbody>().AddForce(multiplier * muzzle.forward * 500);
 
