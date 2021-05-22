@@ -8,6 +8,8 @@ public class PickUpMedKit : PickUpItemController
 
     PlayerLife player;
 
+    public AudioClip SFX;
+
     void Start()
     {
         player = FindObjectOfType<PlayerLife>();

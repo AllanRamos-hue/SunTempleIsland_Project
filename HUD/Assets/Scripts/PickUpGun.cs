@@ -7,7 +7,9 @@ public class PickUpGun : MonoBehaviour
     public GameObject objectPickepUp;
 
     public Transform gunsParent;
-    
+
+    public AudioClip SFX;
+
     public void PickUp()
     {
         objectPickepUp.SetActive(true);

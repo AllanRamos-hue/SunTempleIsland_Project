@@ -8,6 +8,8 @@ public class PickUpAmmo : PickUpItemController
 
     public Weapon weapon;
 
+    public AudioClip SFX;
+
     public override void PickUp()
     {
         if(weapon.gameObject.activeSelf)

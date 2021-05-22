@@ -110,3 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earnedAmmo: 1
   weapon: {fileID: 0}
+  SFX: {fileID: 8300000, guid: 08324184cbdb2a841a4064331dcf1b54, type: 3}

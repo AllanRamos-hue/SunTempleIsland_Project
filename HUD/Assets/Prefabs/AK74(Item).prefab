@@ -276,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPickepUp: {fileID: 0}
   gunsParent: {fileID: 0}
+  SFX: {fileID: 8300000, guid: f5ea0782876af0744bc62bafee13f443, type: 3}
 --- !u!65 &1127541174799704546
 BoxCollider:
   m_ObjectHideFlags: 0
