@@ -66,12 +66,7 @@ public class Weapon : MonoBehaviour
                         muzzleParticle.Play();
 
                     Shoot();
-                }
-                else
-                {
-                    AudioManager.PlaySFX(noAmmoSFX);
-                }
-                   
+                }     
             }
         }
         else
@@ -98,7 +93,17 @@ public class Weapon : MonoBehaviour
 
                 return;
             }        
-        }       
+        }
+
+        if(currentAmmo <=0 && totalAmmo <= 0)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                AudioManager.PlaySFX(noAmmoSFX);
+            }
+        }
+
+        
     }
 
     private void OnEnable()

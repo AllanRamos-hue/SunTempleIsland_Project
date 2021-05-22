@@ -16,6 +16,8 @@ public class PickUpAmmo : PickUpItemController
         {
             base.PickUp();
             weapon.ReceiveAmmo(earnedAmmo);
+
+            AudioManager.PlaySFX(SFX);
         }
     }
 }

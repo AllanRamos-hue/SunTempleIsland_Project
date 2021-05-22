@@ -22,6 +22,8 @@ public class PickUpGun : MonoBehaviour
 
         gameObject.SetActive(false);
 
+        AudioManager.PlaySFX(SFX);
+
         for (int i = 0; i < gunsParent.childCount; i++)
         {
             if (i != 0)

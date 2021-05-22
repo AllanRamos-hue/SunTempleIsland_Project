@@ -20,5 +20,7 @@ public class PickUpMedKit : PickUpItemController
         base.PickUp();
     
         player.ReceiveDamage(lifeEarned);
+
+        AudioManager.PlaySFX(SFX);
     }
 }
