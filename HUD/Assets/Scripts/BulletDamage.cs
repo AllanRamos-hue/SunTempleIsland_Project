@@ -6,6 +6,7 @@ public class BulletDamage : MonoBehaviour
 {
     public string gunName;
     public int damage;
+    public bool friendlyFire;
 
     PlayerLife player;
 
@@ -22,13 +23,16 @@ public class BulletDamage : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (other.CompareTag("Enemy"))
+        if(friendlyFire)
         {
-            other.GetComponent<EnemyLife>().TakeDamage(damage);
-            gameObject.SetActive(false);
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<EnemyLife>().TakeDamage(damage);
+                gameObject.SetActive(false);
+            }
         }
 
-        if(other.CompareTag("Shootable"))
+        if (other.CompareTag("Shootable"))
         {
             other.gameObject.SetActive(false);
             gameObject.SetActive(false);

@@ -15,8 +15,10 @@ public class GameOverScreen : MonoBehaviour
     }
     void Update()
     {
-        if (round == 0) gameOver.SetActive(true);
-
+        if (round == 0)
+        {
+            GameOver();
+        }
     }
 
     public void RestartGame()
@@ -29,4 +31,30 @@ public class GameOverScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        
+        gameOver.SetActive(true);
+
+        EnemyTurret[] turrets = FindObjectsOfType<EnemyTurret>();
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        EnemyPatrol[] patrols = FindObjectsOfType<EnemyPatrol>();
+
+        foreach (EnemyTurret t in turrets)
+        {
+            t.enabled = false;
+        }
+
+        foreach (Enemy e in enemies)
+        {
+            e.enabled = false;
+        }
+
+        foreach (EnemyPatrol p in patrols)
+        {
+            p.enabled = false;
+        }
+
+    }
 }

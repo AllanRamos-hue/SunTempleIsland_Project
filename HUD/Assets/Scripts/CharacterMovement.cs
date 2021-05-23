@@ -93,9 +93,9 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator Respawn()
     {
         if (respawning) yield break;
-        
-        //--GameOverScreen.round;
-        
+
+        --GameOverScreen.round;
+
         respawning = true;
 
         EnemyTurret[] turrets = FindObjectsOfType<EnemyTurret>();

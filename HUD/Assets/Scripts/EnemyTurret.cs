@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTurret : MonoBehaviour
 {
     public bool fixDirection;
+    public bool keepShooting;
     public GameObject projectilePrefab;
     public EnemyLife enemy;
 
@@ -41,16 +42,25 @@ public class EnemyTurret : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, _range))
+            if(keepShooting)
             {
+                transform.LookAt(target);
 
-                if (hit.transform == target)
+                Shoot(fireRate);
+            }
+            else
+            {
+                if (Physics.Raycast(ray, out hit, _range))
                 {
-                    transform.LookAt(target);
 
-                    Shoot(fireRate);
+                    if (hit.transform == target)
+                    {
+                        transform.LookAt(target);
+
+                        Shoot(fireRate);
+                    }
+
                 }
-
             }
         }
     }
