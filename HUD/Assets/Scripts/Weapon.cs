@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isRocket;
 
     [SerializeField] int magAmmo = 10;
-    [Range(0, 200)] int totalAmmo = 30;
+    [Range(0, 200)] int totalAmmo;
 
     [SerializeField] Text ammoText;
     
