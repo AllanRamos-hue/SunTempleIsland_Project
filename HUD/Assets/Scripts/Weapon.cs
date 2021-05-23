@@ -177,9 +177,15 @@ public class Weapon : MonoBehaviour
 
         AudioManager.PlaySFX(reloadSFX);
 
-        totalAmmo -= magAmmo - currentAmmo;
-            
+        int spentAmmo = currentAmmo;
+
         currentAmmo = magAmmo;
+
+        totalAmmo -= currentAmmo - spentAmmo;
+
+
+
+
 
         if (isRocket)
             transform.GetChild(0).gameObject.SetActive(true);

@@ -577,7 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11419d0ee4e9e354fb5adb291e3f3e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 300
+  life: 100
+  enemySound: {fileID: 0}
+  enemyDamagesSFX: []
 --- !u!1 &1084102115993724585
 GameObject:
   m_ObjectHideFlags: 0

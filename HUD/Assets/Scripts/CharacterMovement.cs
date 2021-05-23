@@ -13,6 +13,8 @@ public class CharacterMovement : MonoBehaviour
     public float playerGravity = 8;
 
     public Image fade;
+
+    public AudioClip fenceDamageSFX;
     
     CharacterController controller;
 
@@ -20,8 +22,11 @@ public class CharacterMovement : MonoBehaviour
 
     Vector3 move;
 
-    Vector3 respawnPos;
-    Quaternion respawnRot;
+    [HideInInspector]
+    public Vector3 respawnPos;
+    
+    [HideInInspector]
+    public Quaternion respawnRot;
 
     bool respawning;
 
@@ -80,6 +85,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (other.CompareTag("Fence"))
         {
+            AudioManager.PlaySFX(fenceDamageSFX);
             player.ReceiveDamage(-15);
         }    
     }
@@ -93,10 +99,22 @@ public class CharacterMovement : MonoBehaviour
         respawning = true;
 
         EnemyTurret[] turrets = FindObjectsOfType<EnemyTurret>();
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        EnemyPatrol[] patrols = FindObjectsOfType<EnemyPatrol>();
 
         foreach (EnemyTurret t in turrets)
         {
             t.enabled = false;
+        }
+
+        foreach (Enemy e in enemies)
+        {
+            e.enabled = false;
+        }
+
+        foreach (EnemyPatrol p in patrols)
+        {
+            p.enabled = false;
         }
 
         GetComponent<CharacterMovement>().enabled = false;
@@ -124,6 +142,16 @@ public class CharacterMovement : MonoBehaviour
         foreach (EnemyTurret t in turrets)
         {
             t.enabled = true;
+        }
+
+        foreach (Enemy e in enemies)
+        {
+            e.enabled = true;
+        }
+
+        foreach (EnemyPatrol p in patrols)
+        {
+            p.enabled = true;
         }
 
         while (color.a > 0)
