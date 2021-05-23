@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 1066832146407328322}
   - component: {fileID: 1066832146407328348}
   - component: {fileID: 1066832146407328349}
-  - component: {fileID: 1066832146407328346}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -233,10 +232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8011ba49a881ed74585837ac881cd214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 5
+  speed: 30
+  jumpForce: 10
   playerGravity: 10
   fade: {fileID: 0}
+  fenceDamageSFX: {fileID: 8300000, guid: 41a86c4c75b34a246bb2de756d7af5bf, type: 3}
+  respawnPos: {x: 0, y: 0, z: 0}
+  respawnRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1066832146407328322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,19 +282,6 @@ MonoBehaviour:
   life: 100
   lifeBar: {fileID: 0}
   deathSFX: {fileID: 8300000, guid: a39b4b5f913116c45bc8309e0845ea1b, type: 3}
---- !u!114 &1066832146407328346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066832146407328325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 387af3740370ebc4b86ee40c9a3fb509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOver: {fileID: 0}
 --- !u!1 &1066832146858393549
 GameObject:
   m_ObjectHideFlags: 0

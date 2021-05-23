@@ -23,7 +23,9 @@ public class GameOverScreen : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Terrain");
+
+        round = 3;
     }
 
     public void ReturnMenu()
