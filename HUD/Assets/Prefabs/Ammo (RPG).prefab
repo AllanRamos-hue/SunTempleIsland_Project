@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2263348389531077924}
   - component: {fileID: 2263348389531077927}
   - component: {fileID: 2263348389531077926}
+  - component: {fileID: 2940987680974109268}
   m_Layer: 0
   m_Name: Ammo (RPG)
   m_TagString: Selectable
@@ -111,3 +112,16 @@ MonoBehaviour:
   earnedAmmo: 1
   weapon: {fileID: 0}
   SFX: {fileID: 8300000, guid: 08324184cbdb2a841a4064331dcf1b54, type: 3}
+--- !u!114 &2940987680974109268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263348389531077921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51354e5d646966749bcf85fae8b85a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateAngle: {x: 0, y: 0, z: 100}
