@@ -7,6 +7,7 @@ public class BulletDamage : MonoBehaviour
     public string gunName;
     public int damage;
     public bool friendlyFire;
+    public bool destroyProps;
 
     PlayerLife player;
 
@@ -34,8 +35,12 @@ public class BulletDamage : MonoBehaviour
 
         if (other.CompareTag("Shootable"))
         {
-            other.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            if(destroyProps)
+            {
+                other.gameObject.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
+            
     }
 }

@@ -28,6 +28,8 @@ public class CharacterMovement : MonoBehaviour
     [HideInInspector]
     public Quaternion respawnRot;
 
+
+
     bool respawning;
 
 
@@ -102,6 +104,9 @@ public class CharacterMovement : MonoBehaviour
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         EnemyPatrol[] patrols = FindObjectsOfType<EnemyPatrol>();
 
+        Weapon[] weapons = FindObjectsOfType<Weapon>();
+
+
         foreach (EnemyTurret t in turrets)
         {
             t.enabled = false;
@@ -115,6 +120,12 @@ public class CharacterMovement : MonoBehaviour
         foreach (EnemyPatrol p in patrols)
         {
             p.enabled = false;
+        }
+
+        foreach (Weapon w in weapons)
+        {
+            w.currentAmmo = w.magAmmo;
+            w.totalAmmo = 2 * w.magAmmo;
         }
 
         GetComponent<CharacterMovement>().enabled = false;

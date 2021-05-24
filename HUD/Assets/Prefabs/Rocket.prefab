@@ -129,6 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: RPG
   damage: -110
+  friendlyFire: 0
+  destroyProps: 1
 --- !u!1001 &6327634132745237262
 PrefabInstance:
   m_ObjectHideFlags: 0

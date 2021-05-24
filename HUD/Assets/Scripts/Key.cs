@@ -9,21 +9,22 @@ public class Key : PickUpItemController
     public string key1 = "chave";
     public string chainSaw = "chainsaw";
 
+    public GameObject keyIcon;
+
     public override void PickUp()
     {
         base.PickUp();
 
+        keyIcon.SetActive(true);
+
         if (keyName == key1)
         {
             OpenObject.hasKey = true;
-            Debug.Log(OpenObject.hasKey);
         }
-            
-        
+
         if (keyName == chainSaw) 
         {
             OpenObject.hasChainsaw = true;
-            Debug.Log(OpenObject.hasChainsaw);
         }
     }
 }

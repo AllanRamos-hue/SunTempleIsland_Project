@@ -6,16 +6,21 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     Vector3 center;
-    int currentAmmo;
+    
     bool isReloading;
 
     Animator gunAnim;
 
     [SerializeField] bool isAutomatic;
     [SerializeField] bool isRocket;
-
-    [SerializeField] int magAmmo = 10;
-    [Range(0, 200)] int totalAmmo;
+    
+    [HideInInspector]
+    public int currentAmmo;
+    
+    public int magAmmo = 10;
+    
+    [HideInInspector]
+    public int totalAmmo;
 
     [SerializeField] Text ammoText;
     
@@ -45,7 +50,14 @@ public class Weapon : MonoBehaviour
 
         gunAnim = GetComponent<Animator>();
 
-        totalAmmo = magAmmo * 3;
+        if(isRocket)
+        {
+            totalAmmo = magAmmo;
+        }
+        else
+        {
+            totalAmmo = magAmmo;
+        }
     }
     
     void Update()

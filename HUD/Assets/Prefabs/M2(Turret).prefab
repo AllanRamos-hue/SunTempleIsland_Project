@@ -3092,6 +3092,7 @@ GameObject:
   - component: {fileID: 9155338834789927757}
   - component: {fileID: 9164639137542682853}
   - component: {fileID: 9186915236556705966}
+  - component: {fileID: 3136935967556129100}
   m_Layer: 2
   m_Name: M2(Turret)
   m_TagString: Untagged
@@ -3177,6 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixDirection: 0
+  keepShooting: 0
   projectilePrefab: {fileID: 6526805097006871723, guid: 1f6fde500d28ca24bbd59db93e0d0ba9, type: 3}
   enemy: {fileID: 1084102115911747371}
   range: 30
@@ -3184,6 +3186,19 @@ MonoBehaviour:
   bulletForce: 500
   muzzle: {fileID: 1178210550674242776}
   shootSFX: {fileID: 8300000, guid: 30ec75974a652d646a3c014e71de65d6, type: 3}
+--- !u!65 &3136935967556129100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186915236556705967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.439645, y: 1.380909, z: 0.07195361}
+  m_Center: {x: 0.0068495865, y: 0.16906929, z: -0.00000032775503}
 --- !u!1 &9187155638388196423
 GameObject:
   m_ObjectHideFlags: 0
