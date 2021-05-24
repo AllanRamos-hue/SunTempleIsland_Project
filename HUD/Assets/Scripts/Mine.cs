@@ -8,7 +8,9 @@ public class Mine : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float damage = -50;
 
-    public ParticleSystem explosinFX;
+    public ParticleSystem explosionFX;
+    public AudioManager bip;
+    public AudioClip explosionSFX;
 
     PlayerLife player;
 
@@ -19,22 +21,24 @@ public class Mine : MonoBehaviour
 
     private void OnDisable()
     {
-        if (explosinFX)
-            explosinFX.Play();
+        if (explosionFX)
+            explosionFX.Play();
+
+        AudioManager.PlaySFX(explosionSFX);
     }
 
     void Update()
     {
         Debug.DrawRay(transform.position + Vector3.up, player.transform.position - transform.position, Color.red);
 
-        if(Vector3.Distance(player.transform.position, transform.position + Vector3.up) < maxDistance)
+        if (Vector3.Distance(player.transform.position, transform.position + Vector3.up) < maxDistance)
         {
             player.ReceiveDamage(damage);
 
             gameObject.SetActive(false);
- 
-        }        
-    }
 
+            AudioManager.PlaySFX(explosionSFX);
+        }
+    }
 
 }

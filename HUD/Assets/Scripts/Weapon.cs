@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            totalAmmo = magAmmo;
+            totalAmmo = 3 * magAmmo;
         }
     }
     
