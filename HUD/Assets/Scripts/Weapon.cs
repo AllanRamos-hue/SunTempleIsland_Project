@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.R) || currentAmmo <= 0)
+        if (currentAmmo <= 0)
         {
             if (currentAmmo < magAmmo && totalAmmo > 0)
             {
@@ -188,7 +188,6 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
 
         AudioManager.PlaySFX(reloadSFX);
-
        
         totalAmmo -= magAmmo - currentAmmo;
 
